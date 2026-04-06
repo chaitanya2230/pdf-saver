@@ -39,3 +39,27 @@ def admin_purge_all_pdfs(request):
     
     deleted_count, _ = PDF.objects.all().delete()
     return Response({"message": f"Successfully wiped {deleted_count} cloud storage records!"})
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_pdf(request, pk):
+    try:
+        pdf = PDF.objects.get(pk=pk)
+        pdf.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    except PDF.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_subject_modules(request, subject_id):
+    modules = Module.objects.filter(subject_id=subject_id)
+    serializer = ModuleSerializer(modules, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_module_pdfs(request, module_id):
+    pdfs = PDF.objects.filter(module_id=module_id)
+    serializer = PDFSerializer(pdfs, many=True)
+    return Response(serializer.data)
