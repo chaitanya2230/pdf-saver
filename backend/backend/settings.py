@@ -1,14 +1,9 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
-import dj_database_url
-
-load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-default-key')
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+SECRET_KEY = 'django-insecure-your-secret-key'
+DEBUG = True 
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -33,18 +28,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # Add this for static files!
 ]
 
 ROOT_URLCONF = 'backend.urls'
 
 # Path to the frontend production build
-FRONTEND_DIR = os.path.join(BASE_DIR, '..', 'frontend', 'dist')
+FRONTEND_DIR = os.path.join(BASE_DIR.parent, 'frontend', 'dist')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [FRONTEND_DIR], # Tell Django where to look for index.html
+        'DIRS': [FRONTEND_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -60,28 +54,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
-]
-
+AUTH_PASSWORD_VALIDATORS = []
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR.parent / 'frontend' / 'dist']
-WHITENOISE_ROOT = BASE_DIR.parent / 'frontend' / 'dist'
+STATIC_URL = 'assets/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(FRONTEND_DIR, 'assets'),
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
