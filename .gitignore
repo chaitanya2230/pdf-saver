@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Local Config
+.env
+db.sqlite3
+staticfiles/
+
+# Build files
+dist/
+build/
+.DS_Store
