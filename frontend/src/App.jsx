@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import SubjectDetail from './pages/SubjectDetail';
 import ModuleDetail from './pages/ModuleDetail';
 import Upload from './pages/Upload';
+import AdminAction from './pages/AdminAction';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/subject/:id" element={<SubjectDetail />} />
             <Route path="/module/:id" element={<ModuleDetail />} />
             <Route path="/upload" element={<Upload />} />
+            <Route path="/admin-control" element={<AdminAction />} />
           </Routes>
         </main>
       </div>

@@ -30,3 +30,12 @@ def upload_pdf(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def admin_purge_all_pdfs(request):
+    if request.headers.get('Admin-Auth') != "pdforganizer":
+        return Response({"error": "Unauthorized Access Denied"}, status=status.HTTP_403_FORBIDDEN)
+    
+    deleted_count, _ = PDF.objects.all().delete()
+    return Response({"message": f"Successfully wiped {deleted_count} cloud storage records!"})
