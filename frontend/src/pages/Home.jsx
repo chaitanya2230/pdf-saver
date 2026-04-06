@@ -29,6 +29,18 @@ export default function Home() {
     sub.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleAdminPurge = async () => {
+    if (window.confirm("ARE YOU SURE? This will delete ALL PDFs from the Cloud!")) {
+      try {
+        await api.delete('/admin-purge-all-pdfs/');
+        alert("Wipe Complete! Database is clean.");
+        window.location.reload();
+      } catch (err) {
+        alert("Wipe Failed: " + err.message);
+      }
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
