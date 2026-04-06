@@ -23,6 +23,8 @@ services:
         value: https://yobxelhmjljcwxggitot.supabase.co
       - key: VITE_SUPABASE_ANON_KEY
         value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlvYnhlbGhtamxqY3d4Z2dpdG90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0NzQxODUsImV4cCI6MjA5MTA1MDE4NX0.nM-wT5vAwd3g6aRXv6eO3zv9On8UFuhkLn_8kohMwCw
+      - key: VITE_API_URL
+        value: /api
 
 databases:
   - name: pdf-db
