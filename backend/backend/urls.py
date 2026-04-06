@@ -1,11 +1,18 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
-from django.views.generic import TemplateView
+from django.shortcuts import render
+
+# A super direct view to serve your React index.html
+def serve_react(request):
+    return render(request, 'index.html')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     
-    # This magic line catches EVERYTHING else and shows your React App!
-    re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
+    # Direct Root Serving
+    path('', serve_react),
+    
+    # Catch everything else (for React Router)
+    re_path(r'^.*$', serve_react),
 ]
