@@ -16,6 +16,13 @@ DATABASES = {
     )
 }
 
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'admin-auth',
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -70,13 +77,13 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
+STATIC_URL = '/django_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(FRONTEND_DIR), # Serving everything from dist as static
 ]
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/media_files/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Whitenoise configuration for React

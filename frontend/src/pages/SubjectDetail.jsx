@@ -14,7 +14,7 @@ export default function SubjectDetail() {
     api.get(`/subjects/${id}/modules/`)
       .then(res => {
         setModules(res.data);
-        if(res.data.length > 0 && res.data[0].subject_obj) setSubjectInfo(res.data[0].subject_obj);
+        if(res.data.length > 0 && res.data[0].subject) setSubjectInfo({ name: `Subject Statistics` });
         else setSubjectInfo({ name: `Subject Info` });
       })
       .catch(err => {
