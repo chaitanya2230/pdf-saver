@@ -220,7 +220,7 @@ export default function Upload() {
           {status === 'error' && (
             <div className="p-4 bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 rounded-xl flex items-center gap-3 text-sm font-medium">
               <AlertCircle className="w-5 h-5 flex-shrink-0" />
-              <p>Error uploading. Ensure Firebase config is valid and backend is running.</p>
+              <p>Error uploading. Ensure your Supabase bucket 'pdfs' is public and the backend is running.</p>
             </div>
           )}
 
