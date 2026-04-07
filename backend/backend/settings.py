@@ -88,7 +88,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Whitenoise configuration for React
 WHITENOISE_INDEX_FILE = True
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True

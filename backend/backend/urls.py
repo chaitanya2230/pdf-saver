@@ -18,7 +18,8 @@ urlpatterns = [
     path('api/', include('api.urls')),
     
     # Serve React Assets manually since they aren't prefixed with /static/
-    path('assets/<path:path>', serve, {'document_root': os.path.join(FRONTEND_DIR, 'assets')}),
+    # This is essential for Vite builds on Render
+    re_path(r'^assets/(?P<path>.*)$', serve, {'document_root': os.path.join(FRONTEND_DIR, 'assets')}),
     path('favicon.svg', serve, {'document_root': FRONTEND_DIR, 'path': 'favicon.svg'}),
     path('icons.svg', serve, {'document_root': FRONTEND_DIR, 'path': 'icons.svg'}),
 
