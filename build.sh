@@ -11,7 +11,7 @@ cd ..
 
 # 2. Install Backend Dependencies
 echo "Installing Requirements..."
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 
 # 3. Prepare Django
 echo "Running Migrations and Static Collection..."
