@@ -11,7 +11,7 @@ services:
       cd backend
       python manage.py collectstatic --no-input
       python manage.py migrate
-    startCommand: gunicorn backend.wsgi:application
+    startCommand: gunicorn --chdir backend backend.wsgi:application
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.5
